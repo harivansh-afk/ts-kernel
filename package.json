@@ -1,0 +1,19 @@
+{
+  "name": "ts-kernel",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "ts-kernel": "src/main.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "typescript": "5.9.3",
+    "zod": "^4.6.7",
+    "@types/bun": "^1.4.5"
+  }
+}
