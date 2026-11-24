@@ -1,10 +1,10 @@
 import { Checker } from "./check.ts";
 import type { Config } from "./config.ts";
-import { declarations, globals, makeHelp } from "./prelude.ts";
+import { declarations, globals, instructions, makeHelp } from "./prelude.ts";
 import { connect } from "./servers.ts";
 import { Session } from "./session.ts";
 
-export type Kernel = { session: Session; description: string; types: string; close(): Promise<void> };
+export type Kernel = { session: Session; description: string; instructions: string; types: string; close(): Promise<void> };
 
 const INTRODUCTION = [
   "Run TypeScript in a session that lasts. Top-level await works, the names a cell declares stay for later cells, and the value of the last expression is returned after what console.log printed.",
@@ -19,6 +19,7 @@ export async function start(config: Config): Promise<Kernel> {
   return {
     session: new Session(globals(servers), new Checker(types)),
     description: [...INTRODUCTION, "", makeHelp(servers)()].join("\n"),
+    instructions: instructions(servers),
     types,
     close: async () => {
       await Promise.all(servers.map((server) => server.kind === "up" && server.client.close()));

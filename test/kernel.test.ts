@@ -23,6 +23,7 @@ test("a tool list becomes typed methods", () => {
   expect(kernel.types).toContain("count(input?: Record<string, unknown>): Promise<{");
   expect(kernel.description).toContain("my_chats.search_chats: Find chats by title.");
   expect(kernel.description).toContain("gone (not connected");
+  expect(kernel.instructions).toContain("only way to reach: my_chats (3 tools), gone (not connected)");
 });
 
 test("a cell calls a tool and returns its last expression", async () => {

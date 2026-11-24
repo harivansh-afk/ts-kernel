@@ -18,6 +18,9 @@ agent ──MCP stdio──▶ main.ts ──▶ Session.run(code)
 with its tools or `down` with the reason (`servers.ts`), and a down server has no methods on the session. `prelude.ts` turns the
 lists into one `declare global` block, and `schema.ts` turns each JSON Schema into a TypeScript type. A tool without an output schema returns `any`.
 
+The MCP server's `instructions` name the servers behind `ts`. A client that loads tool descriptions only when asked
+would otherwise not know they are there.
+
 ## A cell
 
 1. `compile` parses the cell. A static `import` or an `export` is refused. The last statement, if it is an

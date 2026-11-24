@@ -31,6 +31,15 @@ function overview(servers: readonly Server[]): string {
     .join("\n");
 }
 
+export function instructions(servers: readonly Server[]): string {
+  const reachable = servers.map((server) => `${identifier(server.name)} (${server.kind === "up" ? `${server.tools.length} tools` : "not connected"})`);
+  return [
+    `The ts tool is the only way to reach: ${reachable.join(", ")}. They have no other tool and no CLI.`,
+    "Call ts with TypeScript. Each of them is a global whose methods are its tools: `await server.tool({ ... })`.",
+    "`help()` lists every tool; `help('server.tool')` shows one tool's arguments. Arguments are typed, so pass them plainly.",
+  ].join(" ");
+}
+
 export function makeHelp(servers: readonly Server[]): (name?: string) => string {
   return (name) => {
     if (!name) return overview(servers);

@@ -18,7 +18,7 @@ const USAGE = `ts-kernel [--config servers.json] [command]
 
 const serve: Command = async (config) => {
   const kernel = await start(config);
-  const server = new McpServer({ name: "ts-kernel", version: "0.1.0" });
+  const server = new McpServer({ name: "ts-kernel", version: "0.1.0" }, { instructions: kernel.instructions });
   const inputSchema = {
     code: z.string().describe("TypeScript to run as a cell"),
     timeout_ms: z.number().optional().describe(`stop waiting for the cell after this long; default ${DEFAULT_TIMEOUT_MS}`),
