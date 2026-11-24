@@ -1,6 +1,7 @@
 # ts-kernel
 
 Let your agent writes TypeScript to call MCP servers
+
 Code mode gives you upto 2x better token efficienct and 4-10x faster tool usage for tasks that require >1 external service
 
 ## Setup
